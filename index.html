@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>just kidding guysss</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #990008;
+      padding: 20px 10px;
+      box-shadow: 0 0 10px #ff4081;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    main {
+      padding: 30px 20px;
+    }
+
+    .pergunta {
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+
+    .opcoes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .opcao {
+      background-color: #1e1e1e;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 15px;
+      width: 200px;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .opcao:hover {
+      transform: scale(1.05);
+      border-color: #ff4081;
+    }
+
+    .opcao img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .opcao p {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .resultado {
+      margin-top: 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ff4081;
+    }
+
+    .x-errado {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2em;
+      color: red;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>just kidding guys KJKJKJK 🎸</h1>
+  </header>
+  <main>
+    <div class="pergunta">Qual é o álbum fav de Lance?</div>
+    <div class="opcoes">
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://m.media-amazon.com/images/I/61ZKMpn4kBL._UF1000,1000_QL80_.jpg" alt="Álbum 1">
+        <p>LoveMetal</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://townsquare.media/site/366/files/2017/07/Venus-Doom-2007.png?w=780&q=75" alt="Álbum 2">
+        <p>Venus Doom</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://i.discogs.com/EmCCLQ-8M6eH5l1ta-YnymTXlpkY3cV10phR3bt_zs4/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5Njc5/MTUtMTM4MDg4MjE1/Mi0zMTk2LmpwZWc.jpeg" alt="Álbum 3">
+        <p>GLSV666</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://m.media-amazon.com/images/I/71JfPQ07OIS._UF894,1000_QL80_.jpg" alt="Álbum 4">
+        <p>Tears On Tape</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(true, this)">
+        <img src="https://m.media-amazon.com/images/I/71KUnL2CNtL._UF1000,1000_QL80_.jpg" alt="Álbum 5">
+        <p>ScreamWorks</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://m.media-amazon.com/images/I/51uyehp0N8L._UXNaN_FMjpg_QL85_.jpg" alt="Álbum 6">
+        <p>Deep Shadows</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://i.discogs.com/buJPvQf1m6X3qFXZbjXRUhTG_s98K92RTIYHnuZf1Z8/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMzkz/MjEtMTU3MjYyNTU5/OS0xNzY4LmpwZWc.jpeg" alt="Álbum 7">
+        <p>Razorblade Romance</p>
+      </div>
+      <div class="opcao" onclick="verificarResposta(false, this)">
+        <img src="https://i.redd.it/bhaabqi9vjhd1.png" alt="Álbum 8">
+        <p>Dark Light</p>
+      </div>
+    </div>
+    <div class="resultado" id="resultado"></div>
+  </main>
+
+  <script>
+    function verificarResposta(correta, opcao) {
+      const resultado = document.getElementById("resultado");
+      
+      if (!correta) {
+        // Mostrar o "X" na opção errada
+        const xErrado = document.createElement("div");
+        xErrado.classList.add("x-errado");
+        xErrado.textContent = "X";
+        opcao.appendChild(xErrado);
+        resultado.textContent = "❌ Errado! Tente de novo, vai... 😅";
+      } else {
+        resultado.textContent = "🎉 Acertou! Esse é o favorito de Lance!";
+        // Gerar confetes
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
